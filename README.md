@@ -7,6 +7,7 @@ learning and practices crud system
 5. go to database.php and set mysql engine set as 'InnoDB'
 6. go to .env and set DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME,(mysql and db name student_db)
 
+--------------------------Student--------------------------------------------------------------------------
 7. create model using php artisan make:model Student -m
 8. create migration using php artisan migration (check is it done in database)
 9. create controller using php artisan make:controller StudentController --resource
@@ -18,8 +19,7 @@ learning and practices crud system
 15. go to resources/views/student/edit.blade.php and add form for crud operation
 16. go to resources/views/student/show.blade.php and add form for crud operation
 
-
-
+--------------------------Grade--------------------------------------------------------------------------
 7. create model using php artisan make:model Grade -m
 8. create migration using php artisan migration (check is it done in database)
 9. create controller using php artisan make:controller GradeController --resource
@@ -31,10 +31,7 @@ learning and practices crud system
 15. go to resources/views/grade/edit.blade.php and add form for crud operation
 16. go to resources/views/grade/show.blade.php and add form for crud operation
 
-
-
-
-
+--------------------------Subject--------------------------------------------------------------------------
 7. create model using php artisan make:model Subject -m
 8. create migration using php artisan migration (check is it done in database)
 9. create controller using php artisan make:controller SubjectController --resource

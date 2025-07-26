@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
@@ -11,7 +11,10 @@ class GradeController extends Controller
      */
     public function index()
     {
-        //
+
+        $grades = Grade::all();
+        return view('grade/index', compact('grades'));
+
     }
 
     /**
@@ -19,7 +22,10 @@ class GradeController extends Controller
      */
     public function create()
     {
-        //
+
+        return view ('grade/create');
+
+
     }
 
     /**
@@ -27,7 +33,18 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grade = new Grade;
+        $grade->Grade_name = $request->input('Grade_name');
+        $grade->Grade_color = $request->input('Grade_color');
+        $grade->Grade_ordernumber = $request->input('Grade_ordernumber');
+        $grade->Grade_group = $request->input('Grade_group');
+        $grade->created_at = now();
+
+        $grade->save();
+
+        return redirect('/grades');
+
+
     }
 
     /**
@@ -35,7 +52,8 @@ class GradeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $grade = Grade::find($id);
+        return view('grade/show', compact('grade'));
     }
 
     /**
@@ -43,7 +61,10 @@ class GradeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $grade = Grade::find($id);
+        return view('grade/edit', compact('grade'));
+
     }
 
     /**
@@ -51,7 +72,17 @@ class GradeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $grade = Grade::find($id);
+        $grade->Grade_name = $request->input('Grade_name');
+        $grade->Grade_color = $request->input('Grade_color');
+        $grade->Grade_ordernumber = $request->input('Grade_ordernumber');
+        $grade->Grade_group = $request->input('Grade_group');
+        $grade->updated_at = now();
+
+        $grade->save();
+
+        return redirect('/grades');
+
     }
 
     /**
@@ -59,6 +90,13 @@ class GradeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $grade = Grade::find($id);
+        $grade->delete();
+
+        return redirect('/grades');
+
+
+
     }
 }

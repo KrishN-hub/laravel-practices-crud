@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Subject;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +12,11 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+
+        $subjects = Subject::all();
+        return view('subject.index', compact('subjects'));
+
+
     }
 
     /**
@@ -19,7 +24,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view ('subject.create');
     }
 
     /**
@@ -27,7 +32,18 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $subject = new Subject;
+        $subject->Subject_name = $request->input('Subject_name');
+        $subject->Subject_index = $request->input('Subject_index');
+        $subject->Subject_odernumber = $request->input('Subject_odernumber');
+        $subject->Subject_type = $request->input('Subject_type');
+        $subject->created_at = now();
+
+        $subject->save();
+
+        return redirect('/subjects');
+
     }
 
     /**
@@ -35,7 +51,10 @@ class SubjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $subject = Subject::find($id);
+        return view('subject.show', compact('subject'));
+
+
     }
 
     /**
@@ -43,7 +62,8 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject = Subject::find($id);
+        return view('subject.edit', compact('subject'));
     }
 
     /**
@@ -51,7 +71,16 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $subject = Subject::find($id);
+        $subject->Subject_name = $request->input('Subject_name');
+        $subject->Subject_index = $request->input('Subject_index');
+        $subject->Subject_odernumber = $request->input('Subject_odernumber');
+        $subject->Subject_type = $request->input('Subject_type');
+        $subject->updated_at = now();
+
+        $subject->save();
+
+        return redirect('/subjects');
     }
 
     /**
@@ -59,6 +88,10 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subject = Subject::find($id);
+        $subject->delete();
+
+        return redirect('/subjects');
+
     }
 }

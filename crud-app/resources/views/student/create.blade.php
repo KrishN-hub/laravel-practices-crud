@@ -1,9 +1,9 @@
 <html>
 <head>
-    <title>Edit student Information</title>
+    <title>Enter student Information</title>
 </head>
 <body>
-    <h1>Edit Student Information</h1>
+    <h1>Enter Student Information</h1>
     <a href="/students" >Back</a>
     <hr>
 
